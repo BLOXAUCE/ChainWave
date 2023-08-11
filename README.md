@@ -67,3 +67,7 @@ npx hardhat --network sepolia deploy --tags VotingSender
 Kdyby sis chtěl přidelat nějakej testnet, tka constants chainids doplnit, stejně tak do hardhat.config.js doplnit a pak doplnit i do layerzeroEndpoints.js to najdeš tady https://layerzero.gitbook.io/docs/technical-reference/mainnet/supported-chain-ids , to jsou všechny co supportují!
 
 Ten endpoin vždy leze i do konstruktoru těch kontraktů, protože to vždy jde přes něj ono to zpracovává ty crosschain věci, ale víceméně to řešit nemusíš v tom repu, jen stačí definovat svůj chain a splnit to co jsem psal nahoře
+
+
+
+Ještě je si potřeba vytvořit .env file MNEMONIC="x x x x x x x x x x x x"
