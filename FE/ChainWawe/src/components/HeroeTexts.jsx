@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import styled from "styled-components";
 
 const TextWrapper = styled.div`
@@ -15,13 +16,13 @@ const SubText = styled(TextMain)`
   font-size: clamp(1.4rem, 0.8vw, 1rem);
 `;
 
-function HeroeTexts() {
+const HeroeTexts = ({ textMain, subText }) => {
   return (
     <TextWrapper>
-      <TextMain>Vote for the project that you like or propose new one</TextMain>
-      <SubText>You can vote from any chain that you like its up to you</SubText>
+      <TextMain>{textMain}</TextMain>
+      <SubText>{subText}</SubText>
     </TextWrapper>
   );
-}
+};
 
 export default HeroeTexts;

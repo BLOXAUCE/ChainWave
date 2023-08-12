@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import theme from "./theme/theme";
 import styled from "styled-components";
+import NewProject from "./pages/NewProject";
 
 export const AppWrapper = styled.div`
   display: flex;
@@ -29,7 +30,7 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Projects />} />
-            {/* <Route path="/newProject" element={<NewProject />} /> */}
+            <Route path="/newProject" element={<NewProject />} />
           </Routes>
         </AppWrapper>
       </BrowserRouter>

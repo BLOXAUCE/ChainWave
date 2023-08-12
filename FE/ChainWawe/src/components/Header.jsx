@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import theme from "../theme/theme";
+import { useNavigate } from "react-router";
+
 const HeaderWrapper = styled.div`
   display: flex;
   position: relative;
@@ -31,10 +33,13 @@ const HeaderItem = styled.div`
 `;
 
 function Header() {
+  const navigate = useNavigate();
   return (
     <HeaderWrapper>
-      <HeaderItem>All projects</HeaderItem>
-      <HeaderItem>New project</HeaderItem>
+      <HeaderItem onClick={() => navigate("/")}>All projects</HeaderItem>
+      <HeaderItem onClick={() => navigate("/newProject")}>
+        New project
+      </HeaderItem>
     </HeaderWrapper>
   );
 }

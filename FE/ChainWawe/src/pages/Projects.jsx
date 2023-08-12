@@ -5,7 +5,10 @@ function Projects() {
   return (
     <>
       <ChainPrices />
-      <HeroeTexts />
+      <HeroeTexts
+        textMain={"Vote for the project that you like or propose new one"}
+        subText={"You can vote from any chain that you like its up to you"}
+      />
       <CardGrid />
     </>
   );
