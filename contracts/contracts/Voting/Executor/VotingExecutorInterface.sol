@@ -15,14 +15,14 @@ interface VotingExecutorInterface is VotingExecutorStructures {
      * @param voter Address of the voter
      * @param vote Positive or negative vote
      */
-    event VoteRecorded(uint256 indexed id, address indexed voter, bool indexed vote);
+    event VoteRecorded(uint256 indexed id, uint256 indexed optionId, address indexed voter, bool vote);
     /**
      * @notice Event emitted when a proposal is created
      * @param id Proposal id
      * @param format Structure of the voting
      * @param root Merkle tree root if voting is private
      */
-    event CreateProposal(uint256 indexed id, VotingFormat indexed format, bytes32 indexed root);
+    event ProposalCreated(uint256 indexed id, VotingFormat indexed format, bytes32 root, uint64 deadline);
 
     /**
      * @notice Creates a proposal for voting

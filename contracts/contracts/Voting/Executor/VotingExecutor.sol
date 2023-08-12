@@ -30,6 +30,8 @@ contract VotingExecutor is VotingExecutorStorage, VotingExecutorInterface, Votin
         proposal.merkleTreeRoot = root;
         proposal.optionsLength = length;
         proposal.deadline = deadline;
+        
+        emit ProposalCreated(lastProposalId, format, root, deadline);
     }
 
     function getProposalStatus(uint256 proposalId) external override view returns(uint256[] memory, uint256[] memory) {
@@ -80,6 +82,8 @@ contract VotingExecutor is VotingExecutorStorage, VotingExecutorInterface, Votin
             ++proposal.options[optionId].negativeVotes;
             ++proposal.addressNegativeVotes[voter];
         }
+
+        emit VoteRecorded(proposalId, optionId, voter, vote);
     }
 
     function validateD21JanacekMethod(bool vote, uint256 voterVotes) private pure {

@@ -13,8 +13,8 @@ interface VotingExecutorStructures {
     
     struct Proposal {
         VotingFormat format;
-        bytes32 merkleTreeRoot;
-        uint64 deadline;
+        bytes32 merkleTreeRoot; // 0 = public, set = private
+        uint64 deadline; // 0 = open indefinitely, set = deadline
         uint8 optionsLength;
         mapping(uint8 => Option) options;
         mapping(address => uint8) addressPositiveVotes;
