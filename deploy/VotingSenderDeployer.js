@@ -1,9 +1,10 @@
 const LZ_ENDPOINTS = require("../constants/layerzeroEndpoints.json")
+const { executorChainId } = require("./settings")
 
 module.exports = async function ({ deployments, getNamedAccounts }) {
     const { deploy } = deployments
     const { deployer } = await getNamedAccounts()
-    console.log(`>>> your address: ${deployer}`)
+    console.log(`>>> Deployer address: ${deployer}`)
 
     // get the Endpoint address
     const endpointAddr = LZ_ENDPOINTS[hre.network.name]
@@ -11,7 +12,7 @@ module.exports = async function ({ deployments, getNamedAccounts }) {
 
     await deploy("VotingSender", {
         from: deployer,
-        args: [endpointAddr],
+        args: [executorChainId, endpointAddr],
         log: true,
         waitConfirmations: 1,
     })

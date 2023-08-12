@@ -1,12 +1,12 @@
 {
-  "name": "@layerzerolabs/omnichain-governance-executor",
+  "name": "voteem",
   "version": "0.0.1",
   "license": "MIT",
   "files": [
     "artifacts/",
     "contracts/"
   ],
-  "description": "contracts for omnichain governance execution",
+  "description": "Contracts for Voteem Governance DApp",
   "main": "index.js",
   "scripts": {
     "compile": "hardhat compile",
@@ -16,9 +16,9 @@
     "lint": "yarn prettier && solhint 'contracts/*.sol' && solhint 'contracts/**/*.sol'"
   },
   "dependencies": {
+    "@layerzerolabs/lz-sdk": "^0.0.11",
     "@layerzerolabs/solidity-examples": "0.0.8",
-    "@openzeppelin/contracts": "^4.4.1",
-    "@layerzerolabs/lz-sdk": "^0.0.11"
+    "@openzeppelin/contracts": "^4.9.3"
   },
   "devDependencies": {
     "@layerzerolabs/prettier-plugin-solidity": "^1.0.0-beta.19",
