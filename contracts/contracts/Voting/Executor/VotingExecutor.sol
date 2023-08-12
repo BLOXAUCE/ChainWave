@@ -19,10 +19,12 @@ contract VotingExecutor is VotingExecutorStorage, VotingExecutorInterface, Votin
     constructor(address _lzEndpoint) NonblockingLzApp(_lzEndpoint) {}
 
     function sendVote(uint256 proposalId, uint8 optionId, bool vote, bytes32[] memory proof) external override payable {
-        processVote(proposalId, optionId, vote, msg.sender, proof);
+        processVote(msg.sender, proposalId, optionId, vote, proof);
     }
 
     function createProposal(VotingFormat format, uint64 deadline, uint8 length, bytes32 root) external override {
+        require(length > 0, "Number of options must be greater than 0");
+        require(deadline == 0 || deadline > block.timestamp, "Incorrect deadline");
         lastProposalId++;
         uint256 nextProposalId = lastProposalId;
         Proposal storage proposal = proposals[nextProposalId];
@@ -53,25 +55,22 @@ contract VotingExecutor is VotingExecutorStorage, VotingExecutorInterface, Votin
     }
 
     function _nonblockingLzReceive(uint16 _srcChainId, bytes memory _srcAddress, uint64 _nonce, bytes memory _payload) internal override {
-        // TODO decode and process payload
-        uint256 proposalId;
-        uint8 optionId;
-        bool vote;
-        address voter;
-        bytes32[] memory proof;
-        processVote(proposalId, optionId, vote, voter, proof);
+        (address voter, uint256 proposalId, uint8 optionId, bool vote, bytes32[] memory proof) = abi.decode(_payload, (address, uint256, uint8, bool, bytes32[]));
+        processVote(voter, proposalId, optionId, vote, proof);
     }
 
-    function processVote(uint256 proposalId, uint8 optionId, bool vote, address voter, bytes32[] memory proof) private {
+    function processVote(address voter, uint256 proposalId, uint8 optionId, bool vote, bytes32[] memory proof) private {
         Proposal storage proposal = proposals[proposalId];
-        require(proposal.deadline < block.timestamp, "Voting is over");
+        if (proposal.deadline != 0) {
+            require(proposal.deadline > block.timestamp, "Voting is over");
+        }
         require(optionId < proposal.optionsLength, "Incorrect option id");
         // sanity check public / private proposal
         if (proposal.merkleTreeRoot != 0) {
             require(MerkleProof.verify(proof, proposal.merkleTreeRoot, keccak256(abi.encodePacked(voter))), "Cannot vote");
         }
         // sanity check by format
-        if (proposal.format == VotingFormat.D21_JANACEK_METHOD) {
+        if (proposal.format == VotingFormat.D21_JANECEK_METHOD) {
             validateD21JanacekMethod(vote, proposal.addressPositiveVotes[voter] + proposal.addressNegativeVotes[voter]);
         }
         // provess vote
@@ -87,6 +86,7 @@ contract VotingExecutor is VotingExecutorStorage, VotingExecutorInterface, Votin
     }
 
     function validateD21JanacekMethod(bool vote, uint256 voterVotes) private pure {
+        // TODO each option can receive only 1 positive vote from voter
         require(voterVotes < 3, "Voter has already distributed all their votes");
         if (vote) {
             require(voterVotes < 2, "Voter has already distributed their positive votes");

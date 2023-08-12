@@ -17,8 +17,13 @@ contract VotingSender is VotingSenderStorage, VotingSenderInterface, Nonblocking
     }
 
     function sendVote(uint256 proposalId, uint8 optionId, bool vote, bytes32[] memory proof) external payable override {
-        // TODO construct payload from msg.sender, vote, proposal id, option id, proof
-        bytes memory payload;
+        bytes memory payload = abi.encode(
+            msg.sender,
+            proposalId,
+            optionId,
+            vote,
+            proof
+        );
         _lzSend(executorChainId, payload, payable(msg.sender), address(0x0), bytes(""), msg.value);
         emit VoteSent(proposalId, optionId, msg.sender, vote);
     }

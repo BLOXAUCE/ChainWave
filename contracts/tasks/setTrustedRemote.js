@@ -36,6 +36,7 @@ module.exports = async function (taskArgs, hre) {
             console.log(`✅ [${hre.network.name}] setTrustedRemote(${remoteChainId}, ${remoteAndLocal})`)
             console.log(` tx: ${tx.transactionHash}`)
         } catch (e) {
+            console.log(e)
             if (e.error.message.includes("The chainId + address is already trusted")) {
                 console.log("*source already set*")
             } else {

@@ -1,4 +1,0 @@
-1. finish VotingSender - sendVote function
-2. finish VotingExecutor - _nonblockingLzReceive function
-3. deploy executor to BSC_TESTNET
-4. deploy senders to multiple other networks

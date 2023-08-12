@@ -8,7 +8,7 @@ pragma solidity ^0.8.0;
  */
 interface VotingExecutorStructures {
     enum VotingFormat {
-        D21_JANACEK_METHOD
+        D21_JANECEK_METHOD
     }
     
     struct Proposal {
