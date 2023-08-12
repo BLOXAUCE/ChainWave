@@ -1,25 +1,30 @@
 import styled from "styled-components";
-import { useState } from "react";
-
+import theme from "../theme/theme";
 const FormWrapper = styled.div`
   display: flex;
-  width: 100%;
+  width: 80%;
   border: 2px solid white;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  @media screen and (${theme.breakpoints.forTabletLandscapeDown}) {
+    width: 100%;
+  }
 `;
 
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 40%;
+  max-width: 70%;
   margin: 2rem;
+  @media screen and (${theme.breakpoints.forTabletLandscapeDown}) {
+    max-width: 90%;
+  }
 `;
 
 const StyledLabel = styled.label`
-  font-size: clamp(1.5rem, 0.8vw, 1rem);
+  font-size: clamp(1.3rem, 0.8vw, 0.5rem);
 `;
 
 const StyledInput = styled.input`
@@ -28,14 +33,14 @@ const StyledInput = styled.input`
   color: white;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: clamp(1.5rem, 0.8vw, 1rem);
+  font-size: clamp(1.3rem, 0.8vw, 0.5rem);
 `;
 
 const StyledSelect = styled.select`
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: clamp(1.5rem, 0.8vw, 1rem);
+  font-size: clamp(1.3rem, 0.8vw, 0.5rem);
 `;
 
 const StyledButton = styled.button`
@@ -45,51 +50,35 @@ const StyledButton = styled.button`
   background-color: transparent;
   width: 50%;
   color: white;
-  font-size: clamp(1.5rem, 0.8vw, 1rem);
+  font-size: clamp(1.3rem, 0.8vw, 0.5rem);
   border: 2px white solid;
   cursor: pointer;
+  @media screen and (${theme.breakpoints.forTabletLandscapeDown}) {
+    width: 90%;
+  }
 `;
 
 function Form() {
-  const [isInfinity, setIsInfinity] = useState(false);
-
-  const handleInfinityChange = (event) => {
-    setIsInfinity(event.target.checked);
-  };
   return (
     <FormWrapper>
       <StyledForm>
         <StyledLabel>Name of Project</StyledLabel>
         <StyledInput type="text" name="projectName" />
 
-        <StyledLabel>How long should the voting run?</StyledLabel>
-        <div>
-          <StyledInput
-            type="checkbox"
-            id="infinityCheckbox"
-            name="infinityCheckbox"
-            checked={isInfinity}
-            onChange={handleInfinityChange}
-          />
-          <StyledLabel htmlFor="infinityCheckbox">Infinity</StyledLabel>
-        </div>
-        {!isInfinity && (
-          <>
-            <StyledInput type="number" name="days" placeholder="Days" />
-            <StyledInput type="number" name="hours" placeholder="Hours" />
-            <StyledInput type="number" name="seconds" placeholder="Seconds" />
-          </>
-        )}
+        <StyledLabel>
+          Select voting end (leave empty for never-ending proposal)
+        </StyledLabel>
+        <StyledInput type="date" name="dateEnd" />
 
         <StyledLabel>Upload Picture</StyledLabel>
         <StyledInput type="file" name="picture" accept="image/*" />
 
         <StyledLabel>Select Voting Method</StyledLabel>
         <StyledSelect name="votingMethod">
-          <option value="method1">Janacek&apos;s method</option>
+          <option value="method1">D21 – Janecek method</option>
         </StyledSelect>
 
-        <StyledLabel>Whitelisted addresses</StyledLabel>
+        <StyledLabel>Voter addresses (leave empty for public)</StyledLabel>
         <StyledInput type="file" name="csvFile" accept=".csv" />
 
         <StyledButton type="submit">Create Project</StyledButton>
