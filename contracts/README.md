@@ -16,7 +16,7 @@
 * <contract_name> VotingExecutor || VotingSender
 
 ## Deployed contracts
-* executor - BSC testnet - 0x1F4A55f55f60A0363aC54ee7B110dC19167cb4EF
-* sender - Sepolia - 0x504707C455ecAaA2C66cf0Ee5802b80bfeb07E93
-* sender - Fantom testnet - 0xB2E37E487b9297401EeCd04B5629E15242865743
-* sender - Fuji - 0xB2E37E487b9297401EeCd04B5629E15242865743
+* executor - Fantom testnet - 0x6882630e42Eae25A27b0556b252fC9d01E1403f5
+* sender - Sepolia - 0x1F4A55f55f60A0363aC54ee7B110dC19167cb4EF
+* sender - BSC testnet - 0x0F5747438663226c80Ba01bBe0ad63DAaeB9C39d
+* sender - Fuji - 0xdC128579A05C0668A0fd4d5991663dc9b202826f
