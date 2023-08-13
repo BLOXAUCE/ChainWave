@@ -3,7 +3,8 @@ import Card from "./Card";
 import useListProposals from "../hooks/useListProposals"; // Update the path to your hook
 import { Methods } from "../utils/methods";
 import { formatDate } from "../utils/timeConverter";
-import { ProjectName, ProjectPhoto } from "../utils/utils";
+import { ProjectName, ProjectPhoto } from "../utils/mockData";
+import placeHolderImage from "../assets/placeholderImage.png"
 
 const CardsContainer = styled.div`
   display: flex;
@@ -28,11 +29,11 @@ function CardGrid() {
         <Card
           key={index}
           id={cardData.VotingExecutor_id}
-          name={ProjectName[cardData.VotingExecutor_id]}
-          img={ProjectPhoto[cardData.VotingExecutor_id]}
+          name={ProjectName[cardData.VotingExecutor_id] ? ProjectName[cardData.VotingExecutor_id] : "Placeholder Name"}
+          img={ProjectPhoto[cardData.VotingExecutor_id] ? ProjectPhoto[cardData.VotingExecutor_id] : placeHolderImage}
           time={formatDate(cardData.deadline)}
           optionsLength={cardData.optionsLength}
-          method={Methods[cardData.format]}
+          method={Methods[0]} // TODO cardData.format
         />
       ))}
     </CardsContainer>

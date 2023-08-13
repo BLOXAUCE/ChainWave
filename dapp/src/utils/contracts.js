@@ -47,7 +47,7 @@ const getContractAddress = (contractType, chain) => {
 export const getLzEndpointContract = (chain) => {
   if (provider) {
     return new ethers.Contract(
-      getContractAddress(ContractType.MULTICALL, chain),
+      getContractAddress(ContractType.LZ_ENDPOINT, chain),
       abi[ContractType.LZ_ENDPOINT],
       provider.getSigner()
     );

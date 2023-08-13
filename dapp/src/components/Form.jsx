@@ -114,7 +114,9 @@ function Form() {
     const contract = getExecutorContract()
     try {
       setErrorMessage("Please, confirm the transaction to create your proposal.")
-      await contract.createProposal(Number(votingMethod), deadline, Number(numberOfOptions), root)
+      const tx = await contract.createProposal(Number(votingMethod), deadline, Number(numberOfOptions), root)
+      const receipt = tx.wait()
+      console.log(receipt)
       setErrorMessage("Proposal successfully created.")
       setHandlingTx(false)
     } catch (error) {
@@ -135,7 +137,7 @@ function Form() {
         <StyledLabel>Upload Picture</StyledLabel>
         <StyledInput type="file" name="picture" accept="image/*" />
 
-        <StyledLabel>Select Voting Method</StyledLabel>
+        <StyledLabel>Select Voting Format</StyledLabel>
         <StyledSelect name="votingMethod">
           <option value="0">D21 – Janecek method</option>
         </StyledSelect>

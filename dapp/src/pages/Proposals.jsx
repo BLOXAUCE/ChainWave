@@ -1,6 +1,7 @@
 import ChainPrices from "../components/ChainPrices";
 import HeroeTexts from "../components/HeroeTexts";
 import CardGrid from "../components/CardContainer";
+
 function Proposals() {
   return (
     <>

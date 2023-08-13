@@ -45,6 +45,7 @@ function ConnectWallet() {
   
       window.ethereum.on("chainChanged", (networkId) => {
         const chain = GetChainById[networkId]
+        initializeProviderWithMetamaskProvider()
         setNetwork(chain)
       });
   
