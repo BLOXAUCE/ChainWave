@@ -8,7 +8,7 @@ module.exports = async function ({ deployments, getNamedAccounts }) {
 
     // get the Endpoint address
     const endpointAddr = LZ_ENDPOINTS[hre.network.name]
-    const executorChainId = CHAIN_ID["bsc-testnet"]
+    const executorChainId = CHAIN_ID["fantom-testnet"]
 
     console.log(`[${hre.network.name}] Endpoint address: ${endpointAddr}`)
 

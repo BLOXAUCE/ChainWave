@@ -22,7 +22,7 @@ interface VotingExecutorInterface is VotingExecutorStructures {
      * @param format Structure of the voting
      * @param root Merkle tree root if voting is private
      */
-    event ProposalCreated(uint256 indexed id, VotingFormat indexed format, bytes32 root, uint64 deadline);
+    event ProposalCreated(uint256 indexed id, VotingFormat format, bytes32 root, uint64 deadline, uint8 optionsLength);
 
     /**
      * @notice Creates a proposal for voting

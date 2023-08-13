@@ -33,7 +33,7 @@ contract VotingExecutor is VotingExecutorStorage, VotingExecutorInterface, Votin
         proposal.optionsLength = length;
         proposal.deadline = deadline;
         
-        emit ProposalCreated(lastProposalId, format, root, deadline);
+        emit ProposalCreated(lastProposalId, format, root, deadline, length);
     }
 
     function getProposalStatus(uint256 proposalId) external override view returns(uint256[] memory, uint256[] memory) {

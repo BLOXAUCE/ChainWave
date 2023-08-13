@@ -2,7 +2,7 @@ const CHAIN_ID = require("../constants/chainIds.json")
 const ENDPOINTS = require("../constants/layerzeroEndpoints.json")
 
 module.exports = async function (taskArgs, hre) {
-    const remoteChainId = CHAIN_ID["bsc-testnet"]
+    const remoteChainId = CHAIN_ID["fantom-testnet"]
     const votingSender = await ethers.getContract("VotingSender")
 
     console.log("Sending vote to contract: " + votingSender.address)
