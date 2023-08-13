@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import theme from "../theme/theme";
 import { useNavigate } from "react-router";
-import { useState, useEffect } from "react";
+import useMetaMask from "../hooks/metamask";
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -39,47 +39,12 @@ const HeaderItemLogin = styled(HeaderItem)`
 
 function Header() {
   const navigate = useNavigate();
-  const [isConnected, setIsConnected] = useState(false);
-  const [networkId, setNetworkId] = useState(null); // State to hold the network ID
-  const [selectedAddress, setSelectedAddress] = useState(null);
 
-  const connectToMetaMask = async () => {
-    if (window.ethereum) {
-      try {
-        await window.ethereum.enable();
-        setIsConnected(true);
-        const accounts = await window.ethereum.request({
-          method: "eth_accounts",
-        });
-        setSelectedAddress(accounts[0]);
-        const networkId = await window.ethereum.request({
-          method: "eth_chainId",
-        });
-        setNetworkId(networkId);
-      } catch (error) {
-        console.error("Error connecting to MetaMask:", error);
-      }
-    }
-  };
-
-  useEffect(() => {
-    // Listen for changes in the Ethereum address
-    window.ethereum.on("accountsChanged", (accounts) => {
-      setSelectedAddress(accounts[0]);
-      setIsConnected(!!accounts.length);
-    });
-
-    // Listen for changes in the Ethereum network
-    window.ethereum.on("chainChanged", (networkId) => {
-      setNetworkId(networkId);
-    });
-
-    return () => {
-      // Cleanup the event listeners when the component unmounts
-      window.ethereum.removeAllListeners("accountsChanged");
-      window.ethereum.removeAllListeners("chainChanged");
-    };
-  }, []);
+  const {
+    isConnected,
+    connectToMetaMask,
+    // ... other values or functions you may need
+  } = useMetaMask();
 
   return (
     <>
