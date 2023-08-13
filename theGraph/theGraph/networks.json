@@ -1,0 +1,8 @@
+{
+  "fantom-testnet": {
+    "VotingExecutor": {
+      "address": "0x6882630e42Eae25A27b0556b252fC9d01E1403f5",
+      "startBlock": 19511467
+    }
+  }
+}
