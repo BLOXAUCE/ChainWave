@@ -1,8 +1,8 @@
-/* eslint-disable react/prop-types */
 import styled from "styled-components";
 import Image from "../assets/placeholderImage.png";
 import { useState } from "react";
 import Modal from "./Modal";
+
 const CardWrapper = styled.div`
   display: flex;
   gap: 1rem;
@@ -37,6 +37,7 @@ const CardDescValueText = styled.span`
   font-size: clamp(1rem, 0.6vw, 1rem);
 `;
 
+/* eslint-disable react/prop-types */
 const Card = ({ name, time, method }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 

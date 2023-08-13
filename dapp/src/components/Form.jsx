@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import theme from "../theme/theme";
+
 const FormWrapper = styled.div`
   display: flex;
   width: 80%;
@@ -62,7 +63,7 @@ function Form() {
   return (
     <FormWrapper>
       <StyledForm>
-        <StyledLabel>Name of Project</StyledLabel>
+        <StyledLabel>Name of Proposal</StyledLabel>
         <StyledInput type="text" name="projectName" />
 
         <StyledLabel>

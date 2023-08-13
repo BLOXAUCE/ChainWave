@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import styled from "styled-components";
 
 const ModalWrapper = styled.div`
@@ -20,6 +19,7 @@ const ModalContent = styled.div`
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
 `;
 
+/* eslint-disable react/prop-types */
 const Modal = ({ children }) => {
   return (
     <ModalWrapper>

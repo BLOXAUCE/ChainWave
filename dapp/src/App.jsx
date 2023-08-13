@@ -1,11 +1,14 @@
 import "./App.css";
-import Projects from "./pages/Projects";
+import Proposals from "./pages/Proposals";
 import Header from "./components/Header";
-// import NewProject from "./pages/Work/Work";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import theme from "./theme/theme";
 import styled from "styled-components";
-import NewProject from "./pages/NewProject";
+import NewProposal from "./pages/NewProposal";
+import { useEffect } from "react";
+import { initializeContracts } from "./utils/contracts"
+import { useErrorStore } from "./store/store";
+import ErrorToast from "./components/ErrorToast";
 
 export const AppWrapper = styled.div`
   display: flex;
@@ -23,14 +26,21 @@ export const AppWrapper = styled.div`
 `;
 
 function App() {
+  useEffect(() => {
+    initializeContracts()
+  },[])
+
+  const { errorMessage } = useErrorStore()
+
   return (
     <>
       <BrowserRouter>
         <AppWrapper>
+          {errorMessage !== "" && <ErrorToast />}
           <Header />
           <Routes>
-            <Route path="/" element={<Projects />} />
-            <Route path="/newProject" element={<NewProject />} />
+            <Route path="/" element={<Proposals />} />
+            <Route path="/create-proposal" element={<NewProposal />} />
           </Routes>
         </AppWrapper>
       </BrowserRouter>

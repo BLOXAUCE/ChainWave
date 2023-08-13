@@ -1,17 +1,18 @@
 import ChainPrices from "../components/ChainPrices";
 import HeroeTexts from "../components/HeroeTexts";
 import CardGrid from "../components/CardContainer";
-function Projects() {
+
+function Proposals() {
   return (
     <>
       <ChainPrices />
       <HeroeTexts
-        textMain={"Vote for the project that you like or propose new one"}
-        subText={"You can vote from any chain that you like its up to you"}
+        textMain={"Vote for the proposals that you like or create a new one"}
+        subText={"You can vote from any chain that you like"}
       />
       <CardGrid />
     </>
   );
 }
 
-export default Projects;
+export default Proposals;
