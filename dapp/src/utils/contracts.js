@@ -65,6 +65,16 @@ export const getSenderContract = (chain) => {
   } else return undefined
 }
 
+export const getExecutorContract = () => {
+  if (provider) {
+    return new ethers.Contract(
+      getContractAddress(ContractType.EXECUTOR, Chain.FANTOM),
+      abi[ContractType.EXECUTOR],
+      provider.getSigner()
+    );
+  } else return undefined
+}
+
 export let contractExecutorFantom;
 export let contractMulticallFantom;
 
