@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import Card from "./Card";
+import useListProposals from "../hooks/useListProposals"; // Update the path to your hook
+import { Methods } from "../utils/methods";
+import { formatDate } from "../utils/timeConverter";
+import { ProjectName, ProjectPhoto } from "../utils/utils";
 
 const CardsContainer = styled.div`
   display: flex;
@@ -12,30 +16,23 @@ const CardsContainer = styled.div`
   }
 `;
 
-const testData = [
-  { name: "Medvěd do salámu", time: "2:32:22", method: "Janackova metoda" },
-  { name: "Another Card", time: "1:45:30", method: "Different Method" },
-  { name: "One More Card", time: "3:15:10", method: "Third Method" },
-  { name: "Medvěd do salámu", time: "2:32:22", method: "Janackova metoda" },
-  { name: "Another Card", time: "1:45:30", method: "Different Method" },
-  { name: "One More Card", time: "3:15:10", method: "Third Method" },
-  { name: "Medvěd do salámu", time: "2:32:22", method: "Janackova metoda" },
-  { name: "Another Card", time: "1:45:30", method: "Different Method" },
-  { name: "One More Card", time: "3:15:10", method: "Third Method" },
-  { name: "Medvěd do salámu", time: "2:32:22", method: "Janackova metoda" },
-  { name: "Another Card", time: "1:45:30", method: "Different Method" },
-  { name: "One More Card", time: "3:15:10", method: "Third Method" },
-];
-
 function CardGrid() {
+  const [loading, listAddress] = useListProposals();
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
   return (
     <CardsContainer>
-      {testData.map((cardData, index) => (
+      {listAddress.map((cardData, index) => (
         <Card
           key={index}
-          name={cardData.name}
-          time={cardData.time}
-          method={cardData.method}
+          id={cardData.VotingExecutor_id}
+          name={ProjectName[cardData.VotingExecutor_id]}
+          img={ProjectPhoto[cardData.VotingExecutor_id]}
+          time={formatDate(cardData.deadline)}
+          optionsLength={cardData.optionsLength}
+          method={Methods[cardData.format]}
         />
       ))}
     </CardsContainer>

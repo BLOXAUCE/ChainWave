@@ -4,6 +4,7 @@ const ModalWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1000;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
@@ -13,9 +14,10 @@ const ModalWrapper = styled.div`
 `;
 
 const ModalContent = styled.div`
-  background-color: white;
+  background-color: black;
   padding: 2rem;
   border-radius: 8px;
+  width: 20%;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
 `;
 
