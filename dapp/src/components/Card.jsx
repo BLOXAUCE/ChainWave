@@ -110,17 +110,17 @@ const Card = ({ name, time, method, img, optionsLength, id }) => {
     const numberOfVotes = await contractExecutorFantom.getAddressVotesForProposal(Number(id), address)
     if (vote) {
       // TODO other voting formats
-      if (numberOfVotes[0] >= 2) {
+      if (Number(numberOfVotes[0]) >= 2) {
         setErrorMessage("You've already distributed your positive votes.")
         setHandlingTx(false)
         return
       }
     } else {
-      if (numberOfVotes[0] !== 2) {
+      if (Number(numberOfVotes[0]) !== 2) {
         setErrorMessage("You must first vote both positive votes before voting negative.")
         setHandlingTx(false)
         return
-      } else if (numberOfVotes[1] === 1) {
+      } else if (Number(numberOfVotes[1]) === 1) {
         setErrorMessage("You've already distributed your negative vote.")
         setHandlingTx(false)
         return
