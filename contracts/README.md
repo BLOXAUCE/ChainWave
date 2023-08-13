@@ -2,7 +2,7 @@
 
 ## Init
 `yarn install`   
-`npx hardhat compile`   
+`npx hardhat compile`
 
 ## Deployment
 `npx hardhat deploy --network <network_name> --tags <contract_name>`
